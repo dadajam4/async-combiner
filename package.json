@@ -1,0 +1,52 @@
+{
+  "name": "@dadajam4/async-combiner",
+  "version": "0.0.1",
+  "description": "Service that combines multiple asynchronous requests into one",
+  "main": "dist/async-combiner.common.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "nuxt-ts",
+    "docs": "rimraf ./docs && typedoc src --out docs --includeDeclarations --excludeExternals --mode modules && touch ./docs/.nojekyll",
+    "build": "npm run docs && plugboy",
+    "test": "jest --config=jest.config.json --notify --coverage --detectOpenHandles"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dadajam4/async-combiner.git"
+  },
+  "keywords": [
+    "async",
+    "typescript"
+  ],
+  "author": "dadajam4",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dadajam4/async-combiner/issues"
+  },
+  "homepage": "https://github.com/dadajam4/async-combiner#readme",
+  "files": [
+    "dist",
+    "types",
+    "src"
+  ],
+  "module": "dist/async-combiner.esm.js",
+  "jsdelivr": "dist/async-combiner.min.js",
+  "unpkg": "dist/async-combiner.min.js",
+  "types": "types/index.d.ts",
+  "sideeffects": false,
+  "devDependencies": {
+    "@dadajam4/plugboy": "^0.3.0",
+    "@types/jest": "^25.2.3",
+    "jest": "^26.0.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typedoc": "^0.17.7",
+    "typescript": "^3.9.3"
+  }
+}
