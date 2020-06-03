@@ -18,6 +18,11 @@ export interface AsyncCombinerContextOptions {
    * Specify "false" if you do not want to duplicate the payload object passed when the asynchronous process succeeds. The default is "true" and is always duplicated. This is to prevent the value used in other logic from being changed unintentionally when the implementation side that receives the payload object modifies the object.
    */
   clone?: boolean;
+
+  /**
+   * When delaying the start of asynchronous processing, specify the waiting time (ms). This option is useful in situations where users frequently make asynchronous operation change requests.
+   */
+  delay?: number;
 }
 
 /** @private */
@@ -55,6 +60,7 @@ export function createCombinerContext(
     condition: any,
     executor: AsyncCombinerExecutor<T>,
     combineClonePayload: boolean = useClonePayload,
+    delay: number | undefined = options.delay,
   ): Promise<T> {
     return new Promise((resolve, reject) => {
       const resolver: AsyncCombinerResolver = { resolve, reject };
@@ -77,13 +83,20 @@ export function createCombinerContext(
       runnings.push(newRunning);
 
       try {
-        executor()
-          .then((payload) => {
-            resolveResolvers(flattenedCondition, 'resolve', payload);
-          })
-          .catch((err) => {
-            resolveResolvers(flattenedCondition, 'reject', err);
-          });
+        const exec = () => {
+          executor()
+            .then((payload) => {
+              resolveResolvers(flattenedCondition, 'resolve', payload);
+            })
+            .catch((err) => {
+              resolveResolvers(flattenedCondition, 'reject', err);
+            });
+        };
+        if (delay) {
+          setTimeout(exec, delay);
+        } else {
+          exec();
+        }
       } catch (err) {
         /* istanbul ignore next */
         resolveResolvers(flattenedCondition, 'reject', err);
