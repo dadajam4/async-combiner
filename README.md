@@ -22,7 +22,8 @@ npm install @dadajam4/async-combiner --save
 ```
 
 ### In your code
-#### Plain JavaScript
+
+#### Pure JavaScript
 ```JavaScript
 //
 // Class base syntax
@@ -68,7 +69,7 @@ class SomeClass {
 }
 ```
 
-### About the mechanism
+### Mechanism and restrictions
 Logic that uses the mechanism of this library should always match the response to the input parameters.  
 **Do not use it for things like get requests that change frequently over time.**  
 Inside the library, the parameters passed to the method are stored as a "condition object", and all requests of the same condition that are triggered before the processing is completed are combined into one execution.  

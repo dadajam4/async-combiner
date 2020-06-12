@@ -31,13 +31,31 @@ interface AsyncCombinerResolver {
   reject: Function;
 }
 
-/**
- * @private
- */
+/** @private */
+interface AsyncCombinerRunningDelaySettings {
+  /**
+   * Return value of setTimeout method
+   */
+  timer: number | null;
+
+  /**
+   * Waits the specified delay milliseconds before executing the request. If it is already in the delay wait state, the wait time is updated.
+   */
+  run: () => void;
+
+  /**
+   * Releases the deferred callback.
+   */
+  clear: () => void;
+}
+
+/** @private */
 interface AsyncCombinerRunning {
   condition: AsyncCombinerFlattenedCondition;
   resolvers: AsyncCombinerResolver[];
   clone?: boolean;
+  exec: () => void;
+  delay: AsyncCombinerRunningDelaySettings | null;
 }
 
 /**
@@ -70,6 +88,9 @@ export function createCombinerContext(
       );
 
       if (sameRunning) {
+        if (sameRunning.delay) {
+          sameRunning.delay.run();
+        }
         sameRunning.resolvers.push(resolver);
         return;
       }
@@ -78,12 +99,8 @@ export function createCombinerContext(
         condition: flattenedCondition,
         resolvers: [resolver],
         clone: combineClonePayload,
-      };
-
-      runnings.push(newRunning);
-
-      try {
-        const exec = () => {
+        exec: () => {
+          newRunning.delay && newRunning.delay.clear();
           executor()
             .then((payload) => {
               resolveResolvers(flattenedCondition, 'resolve', payload);
@@ -91,11 +108,31 @@ export function createCombinerContext(
             .catch((err) => {
               resolveResolvers(flattenedCondition, 'reject', err);
             });
-        };
-        if (delay) {
-          setTimeout(exec, delay);
+        },
+        delay: delay
+          ? {
+              timer: null,
+              run() {
+                this.clear();
+                this.timer = setTimeout(newRunning.exec, delay) as any;
+              },
+              clear() {
+                if (this.timer !== null) {
+                  clearTimeout(this.timer);
+                  this.timer = null;
+                }
+              },
+            }
+          : null,
+      };
+
+      runnings.push(newRunning);
+
+      try {
+        if (newRunning.delay) {
+          newRunning.delay.run();
         } else {
-          exec();
+          newRunning.exec();
         }
       } catch (err) {
         /* istanbul ignore next */

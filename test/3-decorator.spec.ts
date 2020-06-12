@@ -9,6 +9,7 @@ class Mock1 {
   count5: number = 0;
   count6: number = 0;
   count7: number = 0;
+  count8: number = 0;
 
   @Combine()
   func1(url: string) {
@@ -85,6 +86,22 @@ class Mock1 {
       }, 250);
     });
   }
+
+  @Combine({
+    delay: 500,
+  })
+  func8(url: string) {
+    this.count8++;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ url });
+      }, 250);
+    });
+  }
+}
+
+function wait(duration: number) {
+  return new Promise((resolve) => setTimeout(resolve, duration));
 }
 
 describe('module:decorator', () => {
@@ -228,6 +245,23 @@ describe('module:decorator', () => {
         expect(a4).toStrictEqual({ url: '/hoge' });
         expect(a1 === a2).toStrictEqual(false);
         expect(mock.count7).toStrictEqual(1);
+        resolve();
+      });
+    });
+
+    it('should can wait for all consecutive requests when setting the delay', () => {
+      return new Promise(async (resolve) => {
+        const mock = new Mock1();
+        mock.func8('/hoge');
+        await wait(250);
+        expect(mock.count8).toStrictEqual(0);
+        mock.func8('/hoge');
+        await wait(250);
+        expect(mock.count8).toStrictEqual(0);
+        await wait(300);
+        expect(mock.count8).toStrictEqual(1);
+        await wait(500);
+        expect(mock.count8).toStrictEqual(1);
         resolve();
       });
     });
