@@ -88,6 +88,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_combiner_context_.asynccombinerrunning.html#clone" class="tsd-kind-icon">clone</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_combiner_context_.asynccombinerrunning.html#condition" class="tsd-kind-icon">condition</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_combiner_context_.asynccombinerrunning.html#delay" class="tsd-kind-icon">delay</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_combiner_context_.asynccombinerrunning.html#exec" class="tsd-kind-icon">exec</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_combiner_context_.asynccombinerrunning.html#resolvers" class="tsd-kind-icon">resolvers</a></li>
 							</ul>
 						</section>
@@ -102,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/14dbaf9/src/combiner-context.ts#L35">combiner-context.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L61">combiner-context.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -112,9 +114,44 @@
 					<div class="tsd-signature tsd-kind-icon">condition<span class="tsd-signature-symbol">:</span> <a href="_schemes_.asynccombinerflattenedcondition.html" class="tsd-signature-type">AsyncCombinerFlattenedCondition</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/14dbaf9/src/combiner-context.ts#L33">combiner-context.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L59">combiner-context.ts:59</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="delay" class="tsd-anchor"></a>
+					<h3>delay</h3>
+					<div class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">:</span> <a href="_combiner_context_.asynccombinerrunningdelaysettings.html" class="tsd-signature-type">AsyncCombinerRunningDelaySettings</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L63">combiner-context.ts:63</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="exec" class="tsd-anchor"></a>
+					<h3>exec</h3>
+					<div class="tsd-signature tsd-kind-icon">exec<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L62">combiner-context.ts:62</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="resolvers" class="tsd-anchor"></a>
@@ -122,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">resolvers<span class="tsd-signature-symbol">:</span> <a href="_combiner_context_.asynccombinerresolver.html" class="tsd-signature-type">AsyncCombinerResolver</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/14dbaf9/src/combiner-context.ts#L34">combiner-context.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L60">combiner-context.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,12 +208,21 @@
 								<a href="_combiner_context_.asynccombinerrunning.html#condition" class="tsd-kind-icon">condition</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_combiner_context_.asynccombinerrunning.html#delay" class="tsd-kind-icon">delay</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_combiner_context_.asynccombinerrunning.html#exec" class="tsd-kind-icon">exec</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_combiner_context_.asynccombinerrunning.html#resolvers" class="tsd-kind-icon">resolvers</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_combiner_context_.asynccombinerrunningdelaysettings.html" class="tsd-kind-icon">Async<wbr>Combiner<wbr>Running<wbr>Delay<wbr>Settings</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="../modules/_combiner_context_.html#asynccombinercontext" class="tsd-kind-icon">Async<wbr>Combiner<wbr>Context</a>
 					</li>

@@ -39,6 +39,11 @@ interface AsyncCombinerRunningDelaySettings {
   timer: number | null;
 
   /**
+   * Shows `true` when the delayed wait is completed and the asynchronous process is actually started.
+   */
+  triggered: boolean;
+
+  /**
    * Waits the specified delay milliseconds before executing the request. If it is already in the delay wait state, the wait time is updated.
    */
   run: () => void;
@@ -88,7 +93,7 @@ export function createCombinerContext(
       );
 
       if (sameRunning) {
-        if (sameRunning.delay) {
+        if (sameRunning.delay && !sameRunning.delay.triggered) {
           sameRunning.delay.run();
         }
         sameRunning.resolvers.push(resolver);
@@ -100,7 +105,10 @@ export function createCombinerContext(
         resolvers: [resolver],
         clone: combineClonePayload,
         exec: () => {
-          newRunning.delay && newRunning.delay.clear();
+          if (newRunning.delay) {
+            newRunning.delay.clear();
+            newRunning.delay.triggered = true;
+          }
           executor()
             .then((payload) => {
               resolveResolvers(flattenedCondition, 'resolve', payload);
@@ -112,6 +120,7 @@ export function createCombinerContext(
         delay: delay
           ? {
               timer: null,
+              triggered: false,
               run() {
                 this.clear();
                 this.timer = setTimeout(newRunning.exec, delay) as any;

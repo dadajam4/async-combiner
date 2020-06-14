@@ -95,6 +95,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_combiner_context_.asynccombinercontextoptions.html#clone" class="tsd-kind-icon">clone</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_combiner_context_.asynccombinercontextoptions.html#delay" class="tsd-kind-icon">delay</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,12 +109,27 @@
 					<div class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/14dbaf9/src/combiner-context.ts#L20">combiner-context.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L20">combiner-context.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Specify &quot;false&quot; if you do not want to duplicate the payload object passed when the asynchronous process succeeds. The default is &quot;true&quot; and is always duplicated. This is to prevent the value used in other logic from being changed unintentionally when the implementation side that receives the payload object modifies the object.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="delay" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> delay</h3>
+					<div class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L25">combiner-context.ts:25</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When delaying the start of asynchronous processing, specify the waiting time (ms). This option is useful in situations where users frequently make asynchronous operation change requests.</p>
 						</div>
 					</div>
 				</section>
@@ -152,6 +168,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_combiner_context_.asynccombinercontextoptions.html#clone" class="tsd-kind-icon">clone</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_combiner_context_.asynccombinercontextoptions.html#delay" class="tsd-kind-icon">delay</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -161,6 +180,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
 						<a href="_combiner_context_.asynccombinerrunning.html" class="tsd-kind-icon">Async<wbr>Combiner<wbr>Running</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<a href="_combiner_context_.asynccombinerrunningdelaysettings.html" class="tsd-kind-icon">Async<wbr>Combiner<wbr>Running<wbr>Delay<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="../modules/_combiner_context_.html#asynccombinercontext" class="tsd-kind-icon">Async<wbr>Combiner<wbr>Context</a>

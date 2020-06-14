@@ -96,6 +96,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_decorator_.decoratoroptions.html#clone" class="tsd-kind-icon">clone</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_decorator_.decoratoroptions.html#createcondition" class="tsd-kind-icon">create<wbr>Condition</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_decorator_.decoratoroptions.html#delay" class="tsd-kind-icon">delay</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,7 +111,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_combiner_context_.asynccombinercontextoptions.html">AsyncCombinerContextOptions</a>.<a href="_combiner_context_.asynccombinercontextoptions.html#clone">clone</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/14dbaf9/src/combiner-context.ts#L20">combiner-context.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L20">combiner-context.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -125,13 +126,29 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Condition<span class="tsd-signature-symbol">:</span> <a href="../modules/_decorator_.html#combineconditionfactory" class="tsd-signature-type">CombineConditionFactory</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/14dbaf9/src/decorator.ts#L22">decorator.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/decorator.ts#L22">decorator.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>This decorator will automatically generate asynchronous process execution conditions from the method arguments unless specified. In most cases that&#39;s fine, but if you want to customize this process, you can overwrite it according to this type.
 							The order and types of the arguments are all the same as for methods that use decorators.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="delay" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> delay</h3>
+					<div class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_combiner_context_.asynccombinercontextoptions.html">AsyncCombinerContextOptions</a>.<a href="_combiner_context_.asynccombinercontextoptions.html#delay">delay</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/dadajam4/async-combiner/blob/35552c6/src/combiner-context.ts#L25">combiner-context.ts:25</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When delaying the start of asynchronous processing, specify the waiting time (ms). This option is useful in situations where users frequently make asynchronous operation change requests.</p>
 						</div>
 					</div>
 				</section>
@@ -172,6 +189,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_decorator_.decoratoroptions.html#createcondition" class="tsd-kind-icon">create<wbr>Condition</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_decorator_.decoratoroptions.html#delay" class="tsd-kind-icon">delay</a>
 							</li>
 						</ul>
 					</li>
