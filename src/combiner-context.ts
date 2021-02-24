@@ -93,9 +93,9 @@ export function createCombinerContext(
       );
 
       if (sameRunning) {
-        if (sameRunning.delay && !sameRunning.delay.triggered) {
-          sameRunning.delay.run();
-        }
+        // if (sameRunning.delay && !sameRunning.delay.triggered) {
+        //   sameRunning.delay.run();
+        // }
         sameRunning.resolvers.push(resolver);
         return;
       }
@@ -122,7 +122,7 @@ export function createCombinerContext(
               timer: null,
               triggered: false,
               run() {
-                this.clear();
+                // this.clear();
                 this.timer = setTimeout(newRunning.exec, delay) as any;
               },
               clear() {

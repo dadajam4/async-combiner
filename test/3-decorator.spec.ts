@@ -92,7 +92,7 @@ class Mock1 {
   })
   func8(url: string) {
     this.count8++;
-    return new Promise((resolve) => {
+    return new Promise<{ url: string }>((resolve) => {
       setTimeout(() => {
         resolve({ url });
       }, 250);
@@ -112,7 +112,7 @@ describe('module:decorator', () => {
       expect(mock.func1.name).toStrictEqual('asyncCombine');
     });
     it('should can combine', () => {
-      return new Promise(async (resolve) => {
+      return new Promise<void>(async (resolve) => {
         const mock = new Mock1();
         const promises = [
           mock.func1('/hoge'),
@@ -131,7 +131,7 @@ describe('module:decorator', () => {
       });
     });
     it('should can disable clone', () => {
-      return new Promise(async (resolve) => {
+      return new Promise<void>(async (resolve) => {
         const mock = new Mock1();
         const promises = [
           mock.func2('/hoge'),
@@ -150,7 +150,7 @@ describe('module:decorator', () => {
       });
     });
     it('should can reject', () => {
-      return new Promise(async (resolve, reject) => {
+      return new Promise<void>(async (resolve, reject) => {
         const mock = new Mock1();
         const promises = [
           mock.func3('/hoge'),
@@ -170,7 +170,7 @@ describe('module:decorator', () => {
       });
     });
     it('should can reject', () => {
-      return new Promise(async (resolve, reject) => {
+      return new Promise<void>(async (resolve, reject) => {
         const mock = new Mock1();
         const promises = [
           mock.func4('/hoge'),
@@ -189,7 +189,7 @@ describe('module:decorator', () => {
       });
     });
     it('should can custom condition', () => {
-      return new Promise(async (resolve) => {
+      return new Promise<void>(async (resolve) => {
         {
           const mock = new Mock1();
           const promises = [
@@ -226,7 +226,7 @@ describe('module:decorator', () => {
       });
     });
     it('should can delay', () => {
-      return new Promise(async (resolve) => {
+      return new Promise<void>(async (resolve) => {
         const mock = new Mock1();
         const promises = [
           mock.func7('/hoge'),
@@ -249,19 +249,26 @@ describe('module:decorator', () => {
       });
     });
 
-    it('should can wait for all consecutive requests when setting the delay', () => {
-      return new Promise(async (resolve) => {
+    it('If the delay setting time is exceeded when setting the delay, it must be executed immediately.', () => {
+      return new Promise<void>(async (resolve) => {
         const mock = new Mock1();
-        mock.func8('/hoge');
-        await wait(250);
+        const p1 = mock.func8('/hoge');
+        await wait(200);
         expect(mock.count8).toStrictEqual(0);
-        mock.func8('/hoge');
-        await wait(250);
+        const p2 = mock.func8('/hoge');
+        await wait(200);
         expect(mock.count8).toStrictEqual(0);
+        const p3 = mock.func8('/hoge');
+        await wait(200);
+        expect(mock.count8).toStrictEqual(1);
         await wait(300);
         expect(mock.count8).toStrictEqual(1);
         await wait(500);
         expect(mock.count8).toStrictEqual(1);
+        const [r1, r2, r3] = await Promise.all([p1, p2, p3]);
+        expect(r1).toStrictEqual({ url: '/hoge' });
+        expect(r2).toStrictEqual({ url: '/hoge' });
+        expect(r3).toStrictEqual({ url: '/hoge' });
         resolve();
       });
     });
