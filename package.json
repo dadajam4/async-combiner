@@ -1,6 +1,6 @@
 {
   "name": "@dadajam4/async-combiner",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Service that combines multiple asynchronous requests into one",
   "main": "dist/async-combiner.common.js",
   "scripts": {
@@ -10,6 +10,11 @@
     "build": "npm run docs && plugboy",
     "test": "jest --config=jest.config.json --notify --coverage --detectOpenHandles"
   },
+  "browserslist": [
+    "last 2 versions",
+    "android >= 4.4",
+    "IE 11"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -49,5 +54,8 @@
     "typedoc": "^0.17.7",
     "typedoc-plugin-nojekyll": "^1.0.1",
     "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.13.10"
   }
 }

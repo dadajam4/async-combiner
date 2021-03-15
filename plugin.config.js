@@ -2,7 +2,13 @@ const path = require('path');
 
 module.exports = {
   entry: 'src/index.ts',
-  babel: true,
+  babel: {
+    presets: [
+      [
+        '@babel/preset-env',
+      ],
+    ],
+  },
   typescript: {
     tsconfigOverride: {
       include: [path.join(__dirname, 'src/**/*')],
